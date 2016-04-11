@@ -41,19 +41,14 @@
       %ul.nav.navbar-nav.navbar-right
         %li
           %a{:href => "#"} Link
-        %li.dropdown
-          %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-            Dropdown
-            %span.caret
-          %ul.dropdown-menu
-            %li
-              %a{:href => "#"} Action
-            %li
-              %a{:href => "#"} Another action
-            %li
-              %a{:href => "#"} Something else here
-            %li.divider{:role => "separator"}
-            %li
-              %a{:href => "#"} Separated link
+        - if user_signed_in?
+          %li.dropdown
+            %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+              = current_user.username
+              %span.caret
+            %ul.dropdown-menu
+              %li= link_to "Account Settings", edit_user_registration_path
+              %li= link_to "My Profile", user_path(current_user)
+
     / /.navbar-collapse
   / /.container-fluid

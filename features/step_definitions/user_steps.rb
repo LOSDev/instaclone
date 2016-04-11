@@ -16,3 +16,32 @@ Then(/^I have created a user account$/) do
   expect(page).to have_content "You have signed up successfully"
   expect(page).not_to have_selector(".alert-danger")
 end
+
+Given(/^I am a logged in user$/) do
+  @user = FactoryGirl.create(:user)
+  visit root_path
+  click_link "Sign in"
+  fill_in "Email", with: @user.email
+  fill_in "Password", with: @user.password
+  click_button "Log in"
+end
+
+When(/^I change my username$/) do
+  @new_user_name = Faker::Internet.user_name
+  click_link "Account Settings"
+  fill_in "Username", with: @new_user_name
+  fill_in "Current password", with: @user.password
+  click_button "Update"
+end
+
+Then(/^I should see the new username$/) do
+  expect(page).to have_content @new_user_name
+end
+
+When(/^I visit my Profile$/) do
+  click_link "My Profile"
+end
+
+Then(/^I should see my bio$/) do
+  expect(page).to have_content @user.bio
+end
