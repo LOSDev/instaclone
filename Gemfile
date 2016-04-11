@@ -30,6 +30,11 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'unicorn'
 gem "haml-rails", "~> 0.9"
 gem 'bootstrap-sass', '~> 3.3.6'
+gem "factory_girl_rails", "~> 4.0"
+gem 'devise'
+gem 'simple_form'
+gem "paperclip"
+gem 'faker'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -43,6 +48,7 @@ group :test do
   gem 'cucumber-rails', :require => false
   # database_cleaner is not required, but highly recommended
   gem 'database_cleaner'
+  gem 'shoulda-matchers', '~> 3.1'
 end
 
 group :development do
