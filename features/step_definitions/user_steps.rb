@@ -45,3 +45,16 @@ end
 Then(/^I should see my bio$/) do
   expect(page).to have_content @user.bio
 end
+
+When(/^I sign up for the website without a username$/) do
+  @user = FactoryGirl.build(:user)
+  visit root_path
+  click_link "Sign up"
+  fill_in "Email", with: @user.email
+  fill_in "user_password", with: @user.password
+  fill_in "Password confirmation", with: @user.password
+  fill_in "Username", with: ""
+  fill_in "Bio", with: @user.bio
+  attach_file "Avatar", "app/assets/images/sample.jpg"
+  click_button "Sign up"
+end

@@ -9,6 +9,7 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to @post, notice: "Post has been saved."
     else
+      flash.now[:danger] = "Unable to save your post."
       render 'new'
     end
   end
