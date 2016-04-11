@@ -10,4 +10,6 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
   validates_with AttachmentPresenceValidator, attributes: :avatar
   validates_with AttachmentSizeValidator, attributes: :avatar, less_than: 3.megabytes
+
+  has_many :posts
 end

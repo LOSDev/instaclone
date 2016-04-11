@@ -1,0 +1,15 @@
+.row
+  .col-md-8= image_tag(@post.image.url(:medium), class: "img-responsive")
+  .col-md-4
+    %p
+      = link_to(image_tag(@user.avatar.url(:thumb), class: "img-responsive"), @user)
+      %span= link_to @user.username, @user
+    %hr
+    %p
+      .likes
+      %span.pull-right= time_ago_in_words(@post.created_at)
+    %p
+      = link_to @user.username, @user
+      = @post.description
+    .comments
+    %hr

@@ -38,10 +38,10 @@
         .form-group
           %input.form-control{:placeholder => "Search", :type => "text"}/
         %button.btn.btn-default{:type => "submit"} Submit
-      %ul.nav.navbar-nav.navbar-right
-        %li
-          %a{:href => "#"} Link
-        - if user_signed_in?
+      - if user_signed_in?
+        %ul.nav.navbar-nav.navbar-right
+          %li= link_to "New Post", new_post_path
+
           %li.dropdown
             %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
               = current_user.username

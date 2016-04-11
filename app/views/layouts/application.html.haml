@@ -10,4 +10,5 @@
     = render "layouts/navbar"
     - flash.each do |name, msg|
       = content_tag(:div, msg, class: "alert alert-#{name == "notice" ? "info" : name}")
-    = yield
+    .col-md-8.col-md-offset-2
+      = yield

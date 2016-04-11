@@ -13,4 +13,6 @@ RSpec.describe User, type: :model do
                 rejecting('text/plain', 'text/xml') }
   it { should validate_attachment_size(:avatar).
                 less_than(3.megabytes) }
+
+  it { should have_many(:posts)}
 end
