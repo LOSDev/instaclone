@@ -12,4 +12,6 @@ class User < ActiveRecord::Base
   validates_with AttachmentSizeValidator, attributes: :avatar, less_than: 3.megabytes
 
   has_many :posts
+  has_many :comments
+
 end

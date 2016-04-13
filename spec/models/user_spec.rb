@@ -15,4 +15,6 @@ RSpec.describe User, type: :model do
                 less_than(3.megabytes) }
 
   it { should have_many(:posts)}
+  it { should have_many(:comments)}
+
 end

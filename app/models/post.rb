@@ -9,4 +9,6 @@ class Post < ActiveRecord::Base
 
   validates :user_id, presence: true
   validates :description, length: {maximum: 80}
+
+  has_many :comments
 end

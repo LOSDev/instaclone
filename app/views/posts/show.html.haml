@@ -12,5 +12,10 @@
       = link_to @user.username, @user
       = @post.description
     .comments
+      = render @comments
     %hr
+    %p
+      = simple_form_for [@post, Comment.new] do |f|
+        = f.input :content, placeholder: "Comment this post..."
+        = f.button :submit, "Submit Comment"
     %p= link_to "Delete", @post, method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure?"}
