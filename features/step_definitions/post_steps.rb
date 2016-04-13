@@ -21,3 +21,13 @@ end
 Then(/^I should see a flash message with an error$/) do
   expect(page).to have_selector(".alert-danger")
 end
+
+When(/^I delete my post$/) do
+  @post = FactoryGirl.create(:post, user: @user)
+  visit post_path(@post)
+  click_link "Delete"
+end
+
+Then(/^I should have (\d+) posts$/) do |arg1|
+  expect(page).not_to have_selector(".posts img")
+end

@@ -9,3 +9,8 @@ Feature: Posts
     Given I am a logged in user
     When I create a post without an image
     Then I should see a flash message with an error
+
+  Scenario: Delete a posts
+    Given I am a logged in user
+    When I delete my post
+    Then I should have 0 posts

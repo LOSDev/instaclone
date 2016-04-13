@@ -13,3 +13,4 @@
       = @post.description
     .comments
     %hr
+    %p= link_to "Delete", @post, method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure?"}
