@@ -11,4 +11,6 @@ class Post < ActiveRecord::Base
   validates :description, length: {maximum: 80}
 
   has_many :comments
+  has_many :likes
+
 end

@@ -12,5 +12,7 @@ RSpec.describe Post, type: :model do
   it { should validate_presence_of(:user_id)}
   it { should validate_length_of(:description).is_at_most 80}
   it { should have_many(:comments)}
+  it { should have_many(:likes)}
+
 
 end

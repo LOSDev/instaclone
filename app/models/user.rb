@@ -13,5 +13,11 @@ class User < ActiveRecord::Base
 
   has_many :posts
   has_many :comments
+  has_many :likes
+
+  def likes?(post)
+    !!Like.find_by(post: post, user: self)
+  end
+
 
 end

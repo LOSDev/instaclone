@@ -26,6 +26,23 @@ class PostsController < ApplicationController
     redirect_to current_user
   end
 
+  def like
+    @post = Post.find(params[:id])
+    @like = current_user.likes.build(post: @post)
+    if @like.save
+      redirect_to @post, notice: "You like this post now."
+    else
+      flash[:danger] = "Failed to like this post"
+      redirect_to @post
+    end
+  end
+
+  def unlike
+    @post = Post.find(params[:id])
+    current_user.likes.find_by_post_id(@post.id).delete
+    redirect_to @post
+  end
+
   private
 
   def post_params

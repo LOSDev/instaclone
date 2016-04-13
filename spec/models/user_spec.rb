@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+  let(:user1) {FactoryGirl.create(:user)}
+  let(:user2) {FactoryGirl.create(:user)}
+  let(:post) {FactoryGirl.create(:post, user: user1)}
+
   it { should validate_length_of(:bio).is_at_most 200}
   it { should validate_length_of(:username).is_at_most 40}
   it { should validate_length_of(:username).is_at_least 2}
@@ -16,5 +20,20 @@ RSpec.describe User, type: :model do
 
   it { should have_many(:posts)}
   it { should have_many(:comments)}
+  it { should have_many(:likes)}
+
+  describe '#likes?' do
+    describe 'user likes post' do
+      it 'returns true' do
+        user2.likes.create(post: post)
+        expect(user2.likes? post).to be true
+      end
+    end
+    describe 'user does not like post' do
+      it 'returns false' do
+        expect(user2.likes? post).to be false
+      end
+    end
+  end
 
 end
