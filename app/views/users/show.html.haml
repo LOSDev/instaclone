@@ -1,6 +1,12 @@
 .col-md-4= image_tag(@user.avatar.url(:medium), class: "img-responsive")
 .col-md-8
-  %h2= @user.username
+  %h2
+    = @user.username
+    %small= button_to "Follow", follow_user_path(@user), class: "btn btn-default"
   %p= @user.bio
   %p
+    .col-md-4= pluralize(@user.posts.count, "post")
+    .col-md-4= pluralize(@user.followers.count, "follower")
+    .col-md-4= "#{@user.following_relationships.count} following"
+
 .posts

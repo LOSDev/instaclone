@@ -14,6 +14,9 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :comments
   has_many :likes
+  has_many :following_relationships, foreign_key: :follower_id
+  has_many :followers, through: :followed_relationships
+  has_many :followed_relationships, foreign_key: :followed_id, class_name: "FollowingRelationship"
 
   def likes?(post)
     !!Like.find_by(post: post, user: self)

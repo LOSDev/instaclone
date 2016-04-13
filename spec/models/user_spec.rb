@@ -21,6 +21,11 @@ RSpec.describe User, type: :model do
   it { should have_many(:posts)}
   it { should have_many(:comments)}
   it { should have_many(:likes)}
+  it { should have_many(:following_relationships)}
+  it { should have_many(:followers)}
+  it { should have_many(:followed_relationships)}
+
+
 
   describe '#likes?' do
     describe 'user likes post' do
