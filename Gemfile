@@ -35,6 +35,7 @@ gem 'devise'
 gem 'simple_form'
 gem "paperclip"
 gem 'faker'
+gem 'simplecov', :require => false
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
