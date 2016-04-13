@@ -22,5 +22,10 @@ class User < ActiveRecord::Base
     !!Like.find_by(post: post, user: self)
   end
 
+  def follows?(user)
+    return true if self.following_relationships.find_by_followed_id(user.id)
+    false
+  end
+
 
 end

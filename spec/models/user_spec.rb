@@ -41,4 +41,18 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe '#follows?' do
+    describe 'user2 follows user1' do
+      it 'returns true' do
+        user2.following_relationships.create(followed_id: user1.id)
+        expect(user2.follows? user1).to be true
+      end
+    end
+    describe 'user2 does not follow user1' do
+      it 'returns false' do
+        expect(user2.follows? user1).to be false
+      end
+    end
+  end
+
 end
