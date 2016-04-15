@@ -37,6 +37,9 @@ gem "paperclip"
 gem 'faker'
 gem 'simplecov', :require => false
 gem 'friendly_id', '~> 5.1.0'
+gem 'jquery-ui-rails'
+gem "capybara-webkit"
+gem 'jquery-turbolinks'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
