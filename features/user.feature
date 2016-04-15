@@ -20,3 +20,5 @@ Feature: User Pages
     Given I am a logged in user
     When I visit my Profile
     Then I should see my bio
+
+    

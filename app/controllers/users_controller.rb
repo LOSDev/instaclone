@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :find_user
 
   def show
-    @posts = @user.posts
+    @posts = @user.posts.paginate(:page => params[:page], :per_page => 12)
   end
 
   def follow

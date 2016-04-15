@@ -45,3 +45,19 @@ end
 Then(/^I should see the post in a modal$/) do
   expect(page).to have_selector(".modal img")
 end
+
+When(/^A User created (\d+) posts$/) do |arg1|
+  @user = FactoryGirl.create(:user)
+  arg1.to_i.times do
+    FactoryGirl.create(:post, user: @user)
+  end
+  visit user_path(@user)
+end
+
+Then(/^I should see (\d+) posts$/) do |arg1|
+  expect(page).to have_selector(".posts img", count: arg1)
+end
+
+When(/^I click "([^"]*)"$/) do |arg1|
+  click_link arg1
+end

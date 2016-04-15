@@ -1,17 +1,26 @@
-.col-md-4= image_tag(@user.avatar.url(:medium), class: "img-responsive")
-.col-md-8
-  %h2
-    = @user.username
-    - if user_signed_in? && current_user.follows?(@user)
-      %small= button_to "Unfollow", unfollow_user_path(@user), method: :delete, class: "btn btn-default"
-    - else
-      %small= button_to "Follow", follow_user_path(@user), class: "btn btn-default"
-  %p= @user.bio
-  %p
-    .col-md-4= pluralize(@user.posts.count, "post")
-    .col-md-4= pluralize(@user.followers.count, "follower")
-    .col-md-4= "#{@user.following_relationships.count} following"
+.row
+  .col-md-4= image_tag(@user.avatar.url(:medium), class: "img-responsive")
+  .col-md-8
+    %h2
+      = @user.username
+      - if user_signed_in? && current_user.follows?(@user)
+        %small= button_to "Unfollow", unfollow_user_path(@user), method: :delete, class: "btn btn-default"
+      - else
+        %small= button_to "Follow", follow_user_path(@user), class: "btn btn-default"
+    %p= @user.bio
+    %p
+      .col-md-4= pluralize(@user.posts.count, "post")
+      .col-md-4= pluralize(@user.followers.count, "follower")
+      .col-md-4= "#{@user.following_relationships.count} following"
+%br
 
-.posts
-  = render @posts
+.row
+  .posts
+    = render @posts
+%br
+
+- if @posts.next_page
+  .row.text-center
+    .pagination
+      = link_to "Load more", user_path(@user, page: @posts.next_page), remote: true, class: "btn btn-lg btn-default"
 .modal.fade{tabindex: "-1", role: "dialog"}
