@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_action :find_user
 
   def show
+    @posts = @user.posts
   end
 
   def follow

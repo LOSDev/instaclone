@@ -31,3 +31,17 @@ end
 Then(/^I should have (\d+) posts$/) do |arg1|
   expect(page).not_to have_selector(".posts img")
 end
+
+When(/^I visit a user$/) do
+  @user = FactoryGirl.create(:user)
+  @post = FactoryGirl.create(:post, user: @user)
+  visit user_path(@user)
+end
+
+When(/^I click on one of his posts$/) do
+  find(".posts img").click
+end
+
+Then(/^I should see the post in a modal$/) do
+  expect(page).to have_selector(".modal img")
+end

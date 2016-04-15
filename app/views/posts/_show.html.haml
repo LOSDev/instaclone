@@ -1,0 +1,27 @@
+.row
+  .col-md-8= image_tag(@post.image.url(:medium), class: "img-responsive")
+  .col-md-4
+    %p
+      = link_to(image_tag(@user.avatar.url(:thumb), class: "img-responsive"), @user)
+      %span= link_to @user.username, @user
+    %hr
+    %p
+      = pluralize(@post.likes.count, "Like")
+      %span.pull-right= time_ago_in_words(@post.created_at)
+    %p
+      = link_to @user.username, @user
+      = @post.description
+    .comments
+      = render @comments
+    %hr
+    - if user_signed_in?
+      %p
+        - if current_user.likes?(@post)
+          = button_to "Unlike", unlike_post_path(@post), method: :delete, class: "btn btn-primary"
+        - else
+          = button_to "Like", like_post_path(@post), class: "btn btn-primary"
+        = simple_form_for [@post, Comment.new] do |f|
+          = f.input :content, placeholder: "Comment this post..."
+          = f.button :submit, "Submit Comment"
+      - if current_user == @user
+        %p= link_to "Delete", @post, method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure?"}

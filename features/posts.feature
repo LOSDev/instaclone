@@ -14,3 +14,10 @@ Feature: Posts
     Given I am a logged in user
     When I delete my post
     Then I should have 0 posts
+
+  @javascript
+  Scenario: Show post in a modal
+    Given I am a guest
+    When I visit a user
+    And I click on one of his posts
+    Then I should see the post in a modal

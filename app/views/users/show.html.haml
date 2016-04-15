@@ -13,3 +13,5 @@
     .col-md-4= "#{@user.following_relationships.count} following"
 
 .posts
+  = render @posts
+.modal.fade{tabindex: "-1", role: "dialog"}
