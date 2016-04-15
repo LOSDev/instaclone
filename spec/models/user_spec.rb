@@ -24,6 +24,7 @@ RSpec.describe User, type: :model do
   it { should have_many(:following_relationships)}
   it { should have_many(:followers)}
   it { should have_many(:followed_relationships)}
+  it { should have_many(:followed_users)}
 
 
 
@@ -54,5 +55,7 @@ RSpec.describe User, type: :model do
       end
     end
   end
+
+
 
 end

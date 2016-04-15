@@ -4,7 +4,10 @@ Rails.application.routes.draw do
     member do
       post 'follow'
       delete 'unfollow'
+      get 'following'
+      get "followers"
     end
+    
   end
   resources :posts do
     resources :comments, only: [:create, :destroy]

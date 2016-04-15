@@ -25,3 +25,29 @@ Then(/^I am following (\d+) users$/) do |arg1|
   visit user_path(@user)
   expect(page).to have_content("0 following")
 end
+
+When(/^I follow a user$/) do
+  @another_user = FactoryGirl.create(:user)
+  visit user_path(@another_user)
+  click_button "Follow"
+end
+
+When(/^I look at the users I follow$/) do
+  click_link "My Profile"
+  click_link "1 following"
+end
+
+Then(/^I should see the user's bio$/) do
+  expect(page).to have_content(@another_user.bio)
+end
+
+When(/^another user follows me$/) do
+  @another_user = FactoryGirl.create(:user)
+  @another_user.following_relationships.create(followed_id: @user.id)
+  visit user_path(@user)
+end
+
+When(/^I look at my followers$/) do
+  click_link "My Profile"
+  click_link "1 follower"
+end

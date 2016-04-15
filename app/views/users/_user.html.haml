@@ -1,0 +1,7 @@
+%li.list-group-item
+  .media
+    = link_to user do
+      .media-left= image_tag(user.avatar.url(:thumb), class: "img-responsive")
+      .media-body
+        %h4= user.username
+        = user.bio

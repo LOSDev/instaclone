@@ -16,6 +16,13 @@ class UsersController < ApplicationController
     redirect_to @user, notice: "You are not following #{@user.username} anymore."
   end
 
+  def following
+    @users = current_user.followed_users
+  end
+
+  def followers
+    @users = current_user.followers
+  end
   private
 
   def find_user
