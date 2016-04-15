@@ -21,6 +21,8 @@ Rails.application.routes.draw do
 
   # Example of regular route:
   get 'search' => 'search#index'
+  get 'hashtag/:id' => 'hashtag#index', as: "hashtag"
+
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase

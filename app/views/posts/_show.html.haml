@@ -10,7 +10,7 @@
       %span.pull-right= time_ago_in_words(@post.created_at)
     %p
       = link_to @user.username, @user
-      = @post.description
+      .post-description= @post.description
     .comments
       = render @comments
     %hr
