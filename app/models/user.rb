@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   has_many :followers, through: :followed_relationships
   has_many :followed_relationships, foreign_key: :followed_id, class_name: "FollowingRelationship"
   has_many :followed_users, through: :following_relationships, source: :followed
-  
+
   def likes?(post)
     !!Like.find_by(post: post, user: self)
   end
@@ -29,6 +29,11 @@ class User < ActiveRecord::Base
   def follows?(user)
     return true if self.following_relationships.find_by_followed_id(user.id)
     false
+  end
+
+  def feed
+    followed_user_ids = "SELECT followed_id FROM following_relationships WHERE follower_id = ?"
+    Post.where("user_id IN (#{followed_user_ids})", self.id).order("created_at DESC")
   end
 
 

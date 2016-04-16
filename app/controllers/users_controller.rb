@@ -23,6 +23,11 @@ class UsersController < ApplicationController
   def followers
     @users = current_user.followers
   end
+
+  def feed
+    @posts = current_user.feed.paginate(page: params[:page], per_page: 12)
+  end
+
   private
 
   def find_user

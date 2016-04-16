@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let(:user1) {FactoryGirl.create(:user)}
-  let(:user2) {FactoryGirl.create(:user)}
-  let(:post) {FactoryGirl.create(:post, user: user1)}
+  let!(:user1) {FactoryGirl.create(:user)}
+  let!(:user2) {FactoryGirl.create(:user)}
+  let!(:post) {FactoryGirl.create(:post, user: user1)}
 
   it { should validate_length_of(:bio).is_at_most 200}
   it { should validate_length_of(:username).is_at_most 40}
@@ -56,6 +56,18 @@ RSpec.describe User, type: :model do
     end
   end
 
-
+  describe '#feed' do
+    describe 'user2 follows user1' do
+      it 'includes posts from user 1' do
+        user2.following_relationships.create(followed_id: user1.id)
+        expect(user2.feed.size).to eq 1
+      end
+    end
+    describe 'user2 does not follow user1' do
+      it 'feed is empty' do
+        expect(user2.feed.size).to eq 0
+      end
+    end
+  end
 
 end

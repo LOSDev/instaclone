@@ -1,13 +1,14 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :users, only: :show do
+
     member do
       post 'follow'
       delete 'unfollow'
       get 'following'
       get "followers"
+      get 'feed'
     end
-    
   end
   resources :posts do
     resources :comments, only: [:create, :destroy]
