@@ -7,8 +7,13 @@
     = f.input :password_confirmation, required: true
     = f.input :username, required: true
     = f.input :bio
-    = f.input :avatar, as: :file
-
+    .well.clearfix
+      .col-md-4
+        = f.label :avatar, class:  'btn btn-block btn-lg btn-primary' do
+          Select Your Avatar
+          = f.input :avatar, :input_html => { style: 'display: none'}, label: false
+      .upload-preview.col-md-8
+        = image_tag("", alt: "", class: "img-responsive")
   .form-actions
     = f.button :submit, "Sign up"
 = render "devise/shared/links"

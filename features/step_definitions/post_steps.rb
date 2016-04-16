@@ -1,7 +1,9 @@
 When(/^I create a post$/) do
   @post = FactoryGirl.build(:post)
   click_link "New Post"
-  attach_file "Image", "app/assets/images/sample.jpg"
+  Capybara.ignore_hidden_elements = false
+  attach_file "post_image", "app/assets/images/sample.jpg"
+  Capybara.ignore_hidden_elements = true
   fill_in "Description", with: @post.description
   click_button "Create Post"
 end

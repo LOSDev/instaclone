@@ -1,5 +1,11 @@
 %h2 Create Post
 = simple_form_for @post do |f|
-  = f.input :image, as: :file
+  .well.clearfix
+    .col-md-4
+      = f.label :image, class:  'btn btn-block btn-lg btn-primary' do
+        Select Image
+        = f.input :image, :input_html => { style: 'display: none'}, label: false
+    .upload-preview.col-md-8
+      = image_tag("", alt: "", class: "img-responsive")
   = f.input :description
   = f.button :submit

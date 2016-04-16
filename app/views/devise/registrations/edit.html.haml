@@ -12,7 +12,15 @@
     = f.input :current_password, hint: "we need your current password to confirm your changes", required: true
     = f.input :username, required: true
     = f.input :bio
-    = f.input :avatar, as: :file
+    .well.clearfix
+      .col-md-4
+        = f.label :avatar, class:  'btn btn-block btn-lg btn-primary' do
+          Select Your Avatar
+          = f.input :avatar, :input_html => { style: 'display: none'}, label: false
+      .upload-preview.col-md-8
+        = image_tag(current_user.avatar.url(:medium), class: "img-responsive")
+    %br
+
   .form-actions
     = f.button :submit, "Update"
 %h3 Cancel my account

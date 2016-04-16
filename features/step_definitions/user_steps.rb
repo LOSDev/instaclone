@@ -7,7 +7,9 @@ When(/^I sign up for the website$/) do
   fill_in "Password confirmation", with: @user.password
   fill_in "Username", with: @user.username
   fill_in "Bio", with: @user.bio
+  Capybara.ignore_hidden_elements = false
   attach_file "Avatar", "app/assets/images/sample.jpg"
+  Capybara.ignore_hidden_elements = true
   click_button "Sign up"
 
 end
@@ -55,6 +57,8 @@ When(/^I sign up for the website without a username$/) do
   fill_in "Password confirmation", with: @user.password
   fill_in "Username", with: ""
   fill_in "Bio", with: @user.bio
+  Capybara.ignore_hidden_elements = false
   attach_file "Avatar", "app/assets/images/sample.jpg"
+  Capybara.ignore_hidden_elements = true
   click_button "Sign up"
 end
