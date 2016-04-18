@@ -2,14 +2,19 @@ class PostsController < ApplicationController
 
   def new
     @post = current_user.posts.build
+    @image_filters = Post::IMAGE_FILTERS
   end
 
   def create
     @post = current_user.posts.build(post_params)
+    @post.image_filter = params[:post][:image_filter]
     if @post.save
       redirect_to @post, notice: "Post has been saved."
     else
+      @image_filters = Post::IMAGE_FILTERS
       flash.now[:danger] = "Unable to save your post."
+      flash.now[:danger] = @post.errors.full_messages
+
       render 'new'
     end
   end

@@ -1,5 +1,5 @@
 %nav.navbar.navbar-default
-  .container-fluid
+  .container-fluid.col-md-8.col-md-offset-2.col-xs-12
     / Brand and toggle get grouped for better mobile display
     .navbar-header
       %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
@@ -16,7 +16,7 @@
           = f.text_field :term, placeholder: "search for users...", class: "form-control", size: 30
       - if user_signed_in?
         %ul.nav.navbar-nav.navbar-right
-          %li= link_to "New Post", new_post_path
+          = link_to "New Post", new_post_path, class: "btn btn-primary navbar-btn navbar-left"
 
           %li.dropdown
             %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}

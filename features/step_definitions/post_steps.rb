@@ -3,6 +3,7 @@ When(/^I create a post$/) do
   click_link "New Post"
   Capybara.ignore_hidden_elements = false
   attach_file "post_image", "app/assets/images/sample.jpg"
+  choose "post_image_filter_inkwell"
   Capybara.ignore_hidden_elements = true
   fill_in "Description", with: @post.description
   click_button "Create Post"
@@ -10,7 +11,7 @@ end
 
 Then(/^I should be redirected to the new post$/) do
   expect(page).to have_content @post.description
-  expect(page).to have_selector(".col-md-8 img")
+  expect(page).to have_selector(".col-md-8 figure.inkwell img")
 end
 
 When(/^I create a post without an image$/) do

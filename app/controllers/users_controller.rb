@@ -3,12 +3,17 @@ class UsersController < ApplicationController
   before_action :find_user
 
   def show
-    @posts = @user.posts.paginate(:page => params[:page], :per_page => 12)
+    @posts = @user.posts.order("created_at DESC").paginate(:page => params[:page], :per_page => 12)
   end
 
   def follow
-    current_user.following_relationships.create(followed_id: @user.id)
-    redirect_to @user, notice: "You are now following #{@user.username}."
+    rel = current_user.following_relationships.build(followed_id: @user.id)
+    if rel.save
+      redirect_to @user, notice: "You are now following #{@user.username}."
+    else
+      flash[:danger] = "You already follow this user."
+      redirect_to @user
+    end
   end
 
   def unfollow

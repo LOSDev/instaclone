@@ -18,10 +18,21 @@ previewImage = ->
         image_base64 = e.target.result
         preview.attr("src", image_base64)
       reader.readAsDataURL(file)
+      $(".image-filters label").removeClass("active")
+      $(".upload-preview figure").removeClass().addClass("no_filter")
+      $(".image-filters input[value=no_filter]").parent().addClass("active")
+
+
 
 $ ->
   renderHashtags()
   previewImage()
+  $(".image-filters label").click ->
+    $val = $(this).children().val()
+    $(".image-filters label").removeClass("active")
+    $(this).addClass("active")
+    $(".upload-preview figure").removeClass().addClass($val)
+
 
 
   $(document).ajaxSuccess ->

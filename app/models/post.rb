@@ -1,7 +1,7 @@
 class Post < ActiveRecord::Base
   belongs_to :user
-
-  has_attached_file :image, styles: { medium: "600x600>", thumb: "250x250#" }
+  IMAGE_FILTERS = ["no_filter", "aden", "_1977", "lofi", "brooklyn", "nashville", "inkwell", "toaster", "xpro2"]
+  has_attached_file :image, styles: { medium: "800x800>", thumb: "350x350#" }
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
   validates_with AttachmentPresenceValidator, attributes: :image
@@ -9,7 +9,7 @@ class Post < ActiveRecord::Base
 
   validates :user_id, presence: true
   validates :description, length: {maximum: 80}
-
+  validates_inclusion_of :image_filter, in: IMAGE_FILTERS
   has_many :comments
   has_many :likes
 

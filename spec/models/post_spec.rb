@@ -14,5 +14,7 @@ RSpec.describe Post, type: :model do
   it { should have_many(:comments)}
   it { should have_many(:likes)}
 
+  it { should validate_inclusion_of(:image_filter).in_array(Post::IMAGE_FILTERS)}
+
 
 end

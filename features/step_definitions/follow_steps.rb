@@ -1,7 +1,7 @@
 When(/^I follow another user$/) do
   @another_user = FactoryGirl.create(:user)
   visit user_path(@another_user)
-  click_button "Follow"
+  click_link "Follow"
 end
 
 Then(/^I am following (\d+) user$/) do |arg1|
@@ -14,7 +14,7 @@ Then(/^another user has (\d+) follower$/) do |arg1|
 end
 
 When(/^I unfollow him$/) do
-  click_button "Unfollow"
+  click_link "Unfollow"
 end
 
 Then(/^another user has (\d+) followers$/) do |arg1|
@@ -29,7 +29,7 @@ end
 When(/^I follow a user$/) do
   @another_user = FactoryGirl.create(:user)
   visit user_path(@another_user)
-  click_button "Follow"
+  click_link "Follow"
 end
 
 When(/^I look at the users I follow$/) do

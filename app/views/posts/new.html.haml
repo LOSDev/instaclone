@@ -1,11 +1,21 @@
 %h2 Create Post
 = simple_form_for @post do |f|
   .well.clearfix
-    .col-md-4
+    .col-md-3
       = f.label :image, class:  'btn btn-block btn-lg btn-primary' do
         Select Image
         = f.input :image, :input_html => { style: 'display: none'}, label: false
-    .upload-preview.col-md-8
-      = image_tag("", alt: "", class: "img-responsive")
+      %hr
+      .image-filters
+        %h4 Filters:
+
+        - @image_filters.each do |filter|
+          %label.btn.btn-default.btn-block
+            = f.radio_button :image_filter, filter, style: "display:none"
+            = filter.titleize
+    .upload-preview.col-md-9
+      %figure= image_tag("", alt: "", class: "img-responsive")
+      %br
+
   = f.input :description
   = f.button :submit
