@@ -17,7 +17,7 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
  @import "cssgram.min.css";
-
+.alert-alert { @extend .alert-warning; }
  body{
    background-color: #f9f9f9;
  }

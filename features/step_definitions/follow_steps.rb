@@ -51,3 +51,27 @@ When(/^I look at my followers$/) do
   click_link "My Profile"
   click_link "1 follower"
 end
+
+When(/^(\d+) users follow me$/) do |arg1|
+  arg1.to_i.times do
+    FollowingRelationship.create(follower_id: FactoryGirl.create(:user).id, followed_id: @user.id)
+  end
+  visit user_path(@user)
+  click_link "#{arg1} followers"
+end
+
+Then(/^I should see (\d+) followers$/) do |arg1|
+  expect(page).to have_selector(".users img", count: arg1)
+end
+
+When(/^I follow (\d+) users$/) do |arg1|
+  arg1.to_i.times do
+    FollowingRelationship.create(followed_id: FactoryGirl.create(:user).id, follower_id: @user.id)
+  end
+  visit user_path(@user)
+  click_link "#{arg1} following"
+end
+
+Then(/^I should see (\d+) followed users$/) do |arg1|
+  expect(page).to have_selector(".users img", count: arg1)
+end

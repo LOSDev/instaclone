@@ -24,3 +24,19 @@ Feature: Following users
     When another user follows me
     And I look at my followers
     Then I should see the user's bio
+
+  @javascript
+  Scenario: Paginate followers page
+    Given I am a logged in user
+    When 21 users follow me
+    Then I should see 20 followers
+    When I click "Load more"
+    Then I should see 21 followers
+
+  @javascript
+  Scenario: Paginate followed users page
+    Given I am a logged in user
+    When I follow 21 users
+    Then I should see 20 followed users
+    When I click "Load more"
+    Then I should see 21 followed users

@@ -13,12 +13,13 @@
       %ul.nav.navbar-nav
         %li &nbsp;&nbsp;&nbsp;&nbsp;
         %li &nbsp;&nbsp;&nbsp;&nbsp;
-        = form_for :search, html: { class: 'navbar-form navbar-right' }  do |f|
+        = form_for :search, method: :get, html: { class: 'navbar-form navbar-right' }  do |f|
           .form-group
             = f.text_field :term, placeholder: "search for users...", class: "form-control", size: 30
 
-      - if user_signed_in?
-        %ul.nav.navbar-nav.navbar-right
+
+      %ul.nav.navbar-nav.navbar-right
+        - if user_signed_in?
           = link_to "New Post", new_post_path, class: "btn btn-primary navbar-btn navbar-left"
 
           %li.dropdown
@@ -31,6 +32,8 @@
               %li= link_to "My Feed", feed_user_path(current_user)
               %li.divider
               %li= link_to "Account Settings", edit_user_registration_path
-
+        - else
+          %li= link_to "Register", new_user_registration_path
+          %li= link_to "Log in", new_user_session_path
     / /.navbar-collapse
   / /.container-fluid

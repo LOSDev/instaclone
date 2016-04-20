@@ -29,3 +29,15 @@ end
 Then(/^I should see a flash error message$/) do
   expect(page).to have_selector(".alert-danger", text: "too short")
 end
+
+When(/^I see a comment from another user$/) do
+  @another_user = FactoryGirl.create(:user)
+  @post = FactoryGirl.create(:post, user: @another_user)
+  @comment = FactoryGirl.create(:comment, user: @another_user, post: @post)
+  visit post_path(@post)
+end
+
+Then(/^I should not see the delete link$/) do
+  expect(page).to have_content @comment.content
+  expect(page).not_to have_link("X")
+end

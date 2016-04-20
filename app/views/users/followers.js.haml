@@ -1,0 +1,5 @@
+$(".users").append("#{j render @users}")
+- if @users.next_page
+  $(".pagination").html("#{j link_to "Load more", followers_user_path(@user, page: @posts.next_page), remote: true, class: 'btn btn-lg btn-primary'}")
+- else
+  $(".pagination").hide()
