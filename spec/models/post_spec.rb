@@ -7,10 +7,10 @@ RSpec.describe Post, type: :model do
                 allowing('image/png', 'image/gif').
                 rejecting('text/plain', 'text/xml') }
   it { should validate_attachment_size(:image).
-                less_than(3.megabytes) }
+                less_than(4.megabytes) }
 
   it { should validate_presence_of(:user_id)}
-  it { should validate_length_of(:description).is_at_most 80}
+  it { should validate_length_of(:description).is_at_most 100}
   it { should have_many(:comments)}
   it { should have_many(:likes)}
 

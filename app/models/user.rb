@@ -12,14 +12,14 @@ class User < ActiveRecord::Base
   has_attached_file :avatar, styles: { medium: "300x300#", thumb: "100x100#" }
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
   validates_with AttachmentPresenceValidator, attributes: :avatar
-  validates_with AttachmentSizeValidator, attributes: :avatar, less_than: 3.megabytes
+  validates_with AttachmentSizeValidator, attributes: :avatar, less_than: 4.megabytes
 
-  has_many :posts
-  has_many :comments
-  has_many :likes
-  has_many :following_relationships, foreign_key: :follower_id
+  has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :following_relationships, foreign_key: :follower_id, dependent: :destroy
   has_many :followers, through: :followed_relationships
-  has_many :followed_relationships, foreign_key: :followed_id, class_name: "FollowingRelationship"
+  has_many :followed_relationships, foreign_key: :followed_id, class_name: "FollowingRelationship", dependent: :destroy
   has_many :followed_users, through: :following_relationships, source: :followed
 
   def likes?(post)

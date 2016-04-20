@@ -5,10 +5,10 @@ class Post < ActiveRecord::Base
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
   validates_with AttachmentPresenceValidator, attributes: :image
-  validates_with AttachmentSizeValidator, attributes: :image, less_than: 3.megabytes
+  validates_with AttachmentSizeValidator, attributes: :image, less_than: 4.megabytes
 
   validates :user_id, presence: true
-  validates :description, length: {maximum: 80}
+  validates :description, length: {maximum: 100}
   validates_inclusion_of :image_filter, in: IMAGE_FILTERS
   has_many :comments
   has_many :likes

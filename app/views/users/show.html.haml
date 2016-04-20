@@ -1,13 +1,10 @@
 .row
-  .col-md-4.col-xs-12= image_tag(@user.avatar.url(:medium), class: "img-responsive circular center-block")
-  .col-md-8.col-xs-12
+  .col-md-4.col-xs-4= image_tag(@user.avatar.url(:medium), class: "img-responsive circular center-block")
+  .col-md-8.col-xs-8
     %br
     %h2
       = @user.username
-      - if user_signed_in? && current_user.follows?(@user)
-        %span= link_to "Unfollow", unfollow_user_path(@user), method: :delete, class: "btn btn-default"
-      - else
-        %span= link_to "Follow", follow_user_path(@user), method: :post, class: "btn btn-default"
+      = render "shared/follow_button"
     %p= @user.bio
     %br
     .row

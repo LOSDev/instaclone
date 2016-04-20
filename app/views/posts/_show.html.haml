@@ -5,7 +5,9 @@
   .col-md-4.col-xs-12
     %p.media
       .media-left= link_to(image_tag(@user.avatar.url(:thumb), class: "img-responsive"), @user)
-      %span.media-body.h4= link_to @user.username, @user
+      %span.media-body
+        .h4= link_to @user.username, @user
+        = render "shared/follow_button"
 
     %hr
     %p

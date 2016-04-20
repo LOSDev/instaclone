@@ -1,3 +1,5 @@
 = link_to comment.user.username, user_path(comment.user)
 = comment.content
 .pull-right= link_to "X", post_comment_path(comment.post, comment), method: :delete
+%br
+	

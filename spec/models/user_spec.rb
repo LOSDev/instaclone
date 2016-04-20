@@ -5,6 +5,8 @@ RSpec.describe User, type: :model do
   let!(:user2) {FactoryGirl.create(:user)}
   let!(:post) {FactoryGirl.create(:post, user: user1)}
 
+
+
   it { should validate_length_of(:bio).is_at_most 200}
   it { should validate_length_of(:username).is_at_most 40}
   it { should validate_length_of(:username).is_at_least 2}
@@ -16,14 +18,14 @@ RSpec.describe User, type: :model do
                 allowing('image/png', 'image/gif').
                 rejecting('text/plain', 'text/xml') }
   it { should validate_attachment_size(:avatar).
-                less_than(3.megabytes) }
+                less_than(4.megabytes) }
 
-  it { should have_many(:posts)}
-  it { should have_many(:comments)}
-  it { should have_many(:likes)}
-  it { should have_many(:following_relationships)}
+  it { should have_many(:posts).dependent(:destroy)}
+  it { should have_many(:comments).dependent(:destroy)}
+  it { should have_many(:likes).dependent(:destroy)}
+  it { should have_many(:following_relationships).dependent(:destroy)}
   it { should have_many(:followers)}
-  it { should have_many(:followed_relationships)}
+  it { should have_many(:followed_relationships).dependent(:destroy)}
   it { should have_many(:followed_users)}
 
 
@@ -66,6 +68,37 @@ RSpec.describe User, type: :model do
     describe 'user2 does not follow user1' do
       it 'feed is empty' do
         expect(user2.feed.size).to eq 0
+      end
+    end
+  end
+
+  describe 'dependencies' do
+    describe 'deleting a user' do
+      before do
+        @deleted_user = FactoryGirl.create(:user)
+        post2 = FactoryGirl.create(:post, user: @deleted_user)
+        comment = FactoryGirl.create(:comment, user_id: @deleted_user.id, post_id: post2.id)
+        Like.create(user_id: @deleted_user.id, post_id: post.id)
+        @deleted_user.following_relationships.create(followed_id: user2.id)
+        @deleted_user.followed_relationships.create(follower_id: user2.id)
+        User.find(@deleted_user.id).destroy
+      end
+
+      it 'deletes all his posts' do
+        expect(Post.find_by(user_id: @deleted_user.id)).to eq nil
+      end
+      it 'deletes all his likes' do
+        expect(Like.find_by(user_id: @deleted_user.id)).to eq nil
+      end
+      it 'deletes all his comments' do
+        expect(Comment.find_by(user_id: @deleted_user.id)).to eq nil
+      end
+      it 'deletes all his following relationships' do
+        expect(FollowingRelationship.find_by(follower_id: @deleted_user.id)).to eq nil
+      end
+      it 'deletes all his followed relationships' do
+        expect(FollowingRelationship.find_by(followed_id: @deleted_user.id)).to eq nil
+
       end
     end
   end
