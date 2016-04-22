@@ -2,4 +2,12 @@
   = link_to(post, remote: true) do
     %figure{:class => "#{post.image_filter}"}
       = image_tag(post.image.url(:thumb), class: "img-responsive", width: 350)
+    .overlay
+      %h5
+        = post.comments.count
+        %span.glyphicon.glyphicon-comment
+      %h5
+        = post.likes.count
+        %span.glyphicon.glyphicon-heart
+
   %br
