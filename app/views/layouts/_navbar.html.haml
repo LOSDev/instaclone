@@ -13,9 +13,8 @@
       %ul.nav.navbar-nav
         %li &nbsp;&nbsp;&nbsp;&nbsp;
         %li &nbsp;&nbsp;&nbsp;&nbsp;
-        = form_for :search, method: :get, html: { class: 'navbar-form navbar-right' }  do |f|
-          .form-group
-            = f.text_field :term, placeholder: "search for users...", class: "form-control", size: 30
+        .navbar-form.navbar-left
+          .form-group= search_field_tag :search_term, nil, placeholder: "search for users...", class: "form-control", size: 30
 
 
       %ul.nav.navbar-nav.navbar-right

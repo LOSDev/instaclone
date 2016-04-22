@@ -11,6 +11,10 @@ RSpec.describe User, type: :model do
   it { should validate_length_of(:username).is_at_most 40}
   it { should validate_length_of(:username).is_at_least 2}
   it { should validate_uniqueness_of(:username)}
+  it { should allow_value("user_name").for(:username) }
+  it { should_not allow_value("user.name").for(:username) }
+  it { should_not allow_value("user@name").for(:username) }
+
 
   it { should have_attached_file(:avatar) }
   it { should validate_attachment_presence(:avatar) }

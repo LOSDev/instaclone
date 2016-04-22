@@ -5,5 +5,5 @@ When(/^I search for a user$/) do
 end
 
 Then(/^I should the username$/) do
-  expect(page).to have_link @user.username, href: user_path(@user)
+  expect(page).to have_selector(".ui-menu-item", text: @user.username)
 end

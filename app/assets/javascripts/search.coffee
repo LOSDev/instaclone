@@ -4,9 +4,11 @@
 $ ->
   $ac = $("#search_term").autocomplete(
     source: "/search"
+    select: (event, ui) ->
+      window.location.href = "/users/" + ui.item.slug
   )
 
   $ac.data("ui-autocomplete")._renderItem = (ul, item) ->
     return $( "<li>" )
-      .append( "<a href='/users/#{item.slug}'><img src='#{item.avatar}' width='44'>&nbsp;&nbsp;" + item.username + "</a>" )
+      .append( "<img src='#{item.avatar}' width='40'>&nbsp;&nbsp;" + item.username)
       .appendTo( ul )
