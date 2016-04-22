@@ -17,6 +17,8 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
  @import "cssgram.min.css";
+
+ html, body { height: 100%; }
 .alert-alert { @extend .alert-warning; }
  body{
    background-color: #f9f9f9;
@@ -35,4 +37,19 @@
 .comments {
     max-height: 25em;
     overflow: auto;
+}
+
+.modal-lg{
+  width: 80%;
+  height: 40%;
+  .col-md-8{
+    figure{
+    }
+    .img-responsive{
+      max-height:40em;
+      width: auto;
+      display: block;
+      margin: 0 auto;
+    }
+  }
 }

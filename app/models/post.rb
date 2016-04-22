@@ -13,4 +13,12 @@ class Post < ActiveRecord::Base
   has_many :comments
   has_many :likes
 
+
+  def next
+    self.user.posts.where("id > ?", id).order("id ASC").first
+  end
+
+  def previous
+    self.user.posts.where("id < ?", id).order("id DESC").first
+  end
 end

@@ -4,7 +4,8 @@
   %p
     = link_to "Sign up", new_user_registration_path, class: "btn btn-primary btn-lg"
     = link_to "Sign in", new_user_session_path, class: "btn btn-primary btn-lg"
-- Post::IMAGE_FILTERS.each do |filter|
-  .col-md-4.col-xs-4
-    %figure{:class => "#{filter}"}=image_tag("image_#{@random_image}.jpeg", class: "img-responsive")
-    = filter.titleize
+.row
+  - Post::IMAGE_FILTERS.each do |filter|
+    .col-md-4.col-xs-4
+      %figure{:class => "#{filter}"}=image_tag("image_#{@random_image}.jpeg", class: "img-responsive")
+      = filter.titleize

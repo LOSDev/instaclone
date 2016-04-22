@@ -36,5 +36,4 @@ class User < ActiveRecord::Base
     Post.where("user_id IN (#{followed_user_ids})", self.id).order("created_at DESC")
   end
 
-
 end

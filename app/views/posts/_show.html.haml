@@ -19,7 +19,7 @@
         %p
           = link_to @user.username, @user
           %span.post-description= @post.description
-      .comment-pagination= link_to "load more comments", post_comments_path(@post), remote: true, class: "load-more-comments"
+      .comment-pagination.text-center= link_to "load more comments", post_comments_path(@post), remote: true, class: "load-more-comments"
       %br
       .comments-content
     %hr
