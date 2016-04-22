@@ -1,0 +1,5 @@
+$(".comments-content").prepend("#{j render @comments}")
+- if @comments.next_page
+  $(".comment-pagination").html("#{j link_to "load more comments", post_comments_path(@post, page: @comments.next_page), remote: true}")
+- else
+  $(".comment-pagination").remove()

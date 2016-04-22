@@ -1,5 +1,6 @@
-= link_to comment.user.username, user_path(comment.user)
-= comment.content
-- if user_signed_in? && current_user == comment.user
-	.pull-right= link_to "X", post_comment_path(comment.post, comment), method: :delete
+.comment
+	= link_to comment.user.username, user_path(comment.user)
+	= comment.content
+	- if user_signed_in? && current_user == comment.user
+		.pull-right= link_to "X", post_comment_path(comment.post, comment), method: :delete
 %br

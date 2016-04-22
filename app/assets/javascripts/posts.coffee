@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 renderHashtags = ->
   if $(".post-description").length
-    str = $(".post-description").html().replace(/#(\S+)/g,'<a href="/hashtag/$1">#$1</a>')
+    str = $(".post-description").text().replace(/#(\S+)/g,'<a href="/hashtag/$1">#$1</a>')
     $(".post-description").html(str)
 
 previewImage = ->
@@ -22,6 +22,9 @@ previewImage = ->
       $(".upload-preview figure").removeClass().addClass("no_filter")
       $(".image-filters input[value=no_filter]").parent().addClass("active")
 
+loadComments = ->
+  if $(".comment-pagination").length
+    $(".load-more-comments").click()
 
 
 $ ->
@@ -32,8 +35,10 @@ $ ->
     $(".image-filters label").removeClass("active")
     $(this).addClass("active")
     $(".upload-preview figure").removeClass().addClass($val)
-
+  loadComments()
 
 
   $(document).ajaxSuccess ->
     renderHashtags()
+    if $(".modal").length
+      loadComments()

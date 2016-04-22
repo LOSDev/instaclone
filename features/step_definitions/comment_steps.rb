@@ -41,3 +41,15 @@ Then(/^I should not see the delete link$/) do
   expect(page).to have_content @comment.content
   expect(page).not_to have_link("X")
 end
+
+When(/^I visit a post with (\d+) comments$/) do |arg1|
+  @post = FactoryGirl.create(:post, user: @user)
+  arg1.to_i.times do
+    FactoryGirl.create(:comment, user: @user, post: @post)
+  end
+  visit post_path(@post)
+end
+
+Then(/^I should see (\d+) comments$/) do |arg1|
+  expect(page).to have_selector(".comments .comment", count: arg1)
+end

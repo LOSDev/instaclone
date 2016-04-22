@@ -1,5 +1,10 @@
 class CommentsController < ApplicationController
 
+  def index
+    @post = Post.find(params[:post_id])
+    @comments = @post.comments.paginate(page: params[:page], per_page: 20)
+  end
+
   def create
     @post = Post.find(params[:post_id])
     @comment = current_user.comments.build(comment_params)
