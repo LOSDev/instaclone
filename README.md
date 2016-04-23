@@ -3,5 +3,4 @@
 
 * ruby 2.2.1
 
-* App lives at
-http://localhost:3000
+* App lives at http://pure-brook-39208.herokuapp.com

@@ -36,7 +36,6 @@ gem 'faker'
 gem 'simplecov', :require => false
 gem 'friendly_id', '~> 5.1.0'
 gem 'jquery-ui-rails'
-gem "capybara-webkit"
 gem 'jquery-turbolinks'
 gem 'will_paginate', '~> 3.0.6'
 gem 'foreman'
@@ -51,6 +50,7 @@ group :development, :test do
   gem 'byebug'
   gem 'rspec-rails', '~> 3.0'
   gem 'sqlite3'
+  gem "capybara-webkit"
 
 end
 
