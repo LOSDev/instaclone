@@ -14,13 +14,13 @@ When(/^I sign up for the website$/) do
 end
 
 Then(/^I have created a user account$/) do
-  expect(page).to have_content "A message with a confirmation link has been sent to your email address"
+  expect(page).to have_content "signed up successfully"
   expect(page).not_to have_selector(".alert-danger")
 end
 
 Given(/^I am a logged in user$/) do
   @user = FactoryGirl.create(:user)
-  
+
   visit root_path
   click_link "Sign in"
   fill_in "Email", with: @user.email

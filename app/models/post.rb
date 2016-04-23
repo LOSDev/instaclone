@@ -21,4 +21,5 @@ class Post < ActiveRecord::Base
   def previous
     self.user.posts.where("id < ?", id).order("id DESC").first
   end
+
 end

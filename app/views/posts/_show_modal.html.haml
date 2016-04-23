@@ -1,15 +1,11 @@
 .modal-dialog.modal-lg
   .modal-content
     .modal-body.clearfix
-
-
       = render "show"
     .modal-footer
       .pull-left
-        - if @post.next
-          = link_to post_path(@post.next), remote: true, class: "btn btn-primary btn-lg" do
-            %span.glyphicon.glyphicon-chevron-left
+        = link_to "", remote: true, class: "btn btn-primary btn-lg previous-button" do
+          %span.glyphicon.glyphicon-chevron-left
       .pull-right
-        - if @post.previous
-          = link_to post_path(@post.previous), remote: true, class: "btn btn-primary btn-lg" do
-            %span.glyphicon.glyphicon-chevron-right
+        = link_to "", remote: true, class: "btn btn-primary btn-lg next-button" do
+          %span.glyphicon.glyphicon-chevron-right

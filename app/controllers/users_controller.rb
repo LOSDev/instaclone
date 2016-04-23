@@ -22,11 +22,11 @@ class UsersController < ApplicationController
   end
 
   def following
-    @users = current_user.followed_users.paginate(page: params[:page], per_page: 20)
+    @users = @user.followed_users.paginate(page: params[:page], per_page: 20)
   end
 
   def followers
-    @users = current_user.followers.paginate(page: params[:page], per_page: 20)
+    @users = @user.followers.paginate(page: params[:page], per_page: 20)
   end
 
   def feed

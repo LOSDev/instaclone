@@ -1,7 +1,6 @@
 %h3 Your followers:
-.users
-  %ul.list-group
-    = render @users
+%ul.list-group.users
+  = render @users
 - if @users.next_page
   .row
     .col-md-4.col-md-offset-4.text-center

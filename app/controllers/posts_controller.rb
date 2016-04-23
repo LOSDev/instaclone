@@ -13,8 +13,6 @@ class PostsController < ApplicationController
     else
       @image_filters = Post::IMAGE_FILTERS
       flash.now[:danger] = "Unable to save your post."
-      flash.now[:danger] = @post.errors.full_messages
-
       render 'new'
     end
   end
