@@ -21,8 +21,8 @@ loadPostModal = (event, obj) ->
   elem = obj
   url = elem.attr('href')
   $.ajax
-    url: url,
-    dataType: 'script',
+    url: url
+    dataType: 'script'
     success: (data) ->
       image = $(".posts a[href='#{url}']").parent()
       previous = image.next().find("a").attr("href")

@@ -6,7 +6,7 @@ FactoryGirl.define do
 
   end
   sequence :description do |n|
-    "description_#{n}"
+    "#{Faker::Hipster.word} #{Faker::Hipster.word} #cat_#{n % 50}"
   end
 
 end

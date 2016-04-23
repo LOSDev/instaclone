@@ -1,5 +1,15 @@
 %h2.text-center Posts with hashtag: ##{@hashtag}
 %br
-	
+
 .posts
   = render @posts
+
+%br
+
+- if @posts.next_page
+  .row
+    .col-md-4.col-md-offset-4.text-center
+      .pagination= link_to "Load more", hashtag_path(@hashtag, page: @posts.next_page), remote: true, class: "btn btn-lg btn-primary"
+%br
+
+.modal.fade{tabindex: "-1", role: "dialog"}
