@@ -11,10 +11,10 @@ RSpec.describe UsersController, type: :controller do
         user2.following_relationships.create(followed_id: user1.id)
         post :follow, id: user1.id
       end
-      it 'does do something' do
+      it 'sets flash error' do
         expect(flash[:danger]).not_to be nil
       end
-      it 'does do something' do
+      it 'redirects to user page' do
         expect(response).to redirect_to user1
       end
     end

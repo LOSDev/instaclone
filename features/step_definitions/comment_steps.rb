@@ -3,7 +3,7 @@ When(/^I create a comment$/) do
   @comment = FactoryGirl.build(:comment)
   visit post_path(@post)
   fill_in "comment_content", with: @comment.content
-  click_button "Submit Comment"
+  click_button "Submit"
 end
 
 Then(/^I should see the comment$/) do
@@ -11,7 +11,7 @@ Then(/^I should see the comment$/) do
 end
 
 When(/^I delete the comment$/) do
-  click_link "X"
+  page.find(".delete-comment").click()
 end
 
 Then(/^I should not see the comment$/) do
@@ -23,7 +23,7 @@ When(/^I create an invalid comment$/) do
   @comment = FactoryGirl.build(:comment)
   visit post_path(@post)
   fill_in "comment_content", with: ""
-  click_button "Submit Comment"
+  click_button "Submit"
 end
 
 Then(/^I should see a flash error message$/) do

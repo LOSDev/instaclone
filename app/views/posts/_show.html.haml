@@ -25,13 +25,20 @@
     %hr
     - if user_signed_in?
       %p
-        = simple_form_for [@post, Comment.new] do |f|
+        = simple_form_for [@post, Comment.new], html: { class: 'form-inline' } do |f|
           = f.input :content, placeholder: "Add a comment...", label: false
-          = f.button :submit, "Submit Comment"
+          = f.button :submit, "Submit"
         %br
         - if current_user.likes?(@post)
-          = button_to "Unlike", unlike_post_path(@post), method: :delete, class: "btn btn-primary"
+          = button_to unlike_post_path(@post), method: :delete, class: "btn btn-primary" do
+            %span.glyphicon.glyphicon-heart-empty
+            Unlike
         - elsif current_user == @user
-          %p= link_to "Delete", @post, method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure?"}
+          %p
+            = link_to @post, method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure?"} do
+              %span.glyphicon.glyphicon-trash
+              Delete
         - else
-          = button_to "Like", like_post_path(@post), class: "btn btn-primary"
+          = button_to like_post_path(@post), class: "btn btn-primary" do
+            %span.glyphicon.glyphicon-heart
+            Like
