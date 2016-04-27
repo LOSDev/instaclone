@@ -39,6 +39,7 @@ gem 'jquery-ui-rails'
 gem 'jquery-turbolinks'
 gem 'will_paginate', '~> 3.0.6'
 gem 'foreman'
+gem 'aws-sdk-v1'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 group :production do
@@ -52,7 +53,7 @@ group :development, :test do
   gem 'sqlite3'
   gem "capybara-webkit"
   gem 'selenium-webdriver'
-
+  gem 'dotenv-rails'
 end
 
 group :test do
