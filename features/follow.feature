@@ -6,6 +6,12 @@ Feature: Following users
     Then another user has 1 follower
     And I am following 1 user
 
+  @javascript
+  Scenario: Follow user via ajax
+    Given I am a logged in user
+    When I follow another user
+    Then another user has 1 follower
+
   Scenario: Unfollow another user
     Given I am a logged in user
     When I follow another user

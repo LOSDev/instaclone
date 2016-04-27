@@ -1,0 +1,2 @@
+$(".like-button").html("#{j render "shared/like_button"}")
+$(".likes").html("#{j pluralize(@post.likes.count, "like")}")

@@ -8,17 +8,30 @@ class UsersController < ApplicationController
 
   def follow
     rel = current_user.following_relationships.build(followed_id: @user.id)
-    if rel.save
-      redirect_to @user, notice: "You are now following #{@user.username}."
-    else
-      flash[:danger] = "You already follow this user."
-      redirect_to @user
+
+    respond_to do |format|
+      format.html do
+        if rel.save
+          redirect_to @user, notice: "You are now following #{@user.username}."
+        else
+          flash[:danger] = "You already follow this user."
+          redirect_to @user
+        end
+      end
+      format.js do
+        rel.save
+      end
     end
+
   end
 
   def unfollow
     current_user.following_relationships.find_by_followed_id(@user.id).delete
-    redirect_to @user, notice: "You are not following #{@user.username} anymore."
+
+    respond_to do |format|
+      format.html {redirect_to @user, notice: "You are not following #{@user.username} anymore."}
+      format.js { render "follow"}
+    end
   end
 
   def following

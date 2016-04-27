@@ -1,0 +1,2 @@
+$(".follow-button").html("#{j render "shared/follow_button"}")
+$(".followers").html("#{j pluralize(@user.followers.count, "follower")}")

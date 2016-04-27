@@ -31,18 +31,26 @@ class PostsController < ApplicationController
   def like
     @post = Post.find(params[:id])
     @like = current_user.likes.build(post: @post)
-    if @like.save
-      redirect_to @post, notice: "You like this post now."
-    else
-      flash[:danger] = "Failed to like this post"
-      redirect_to @post
+    respond_to do |format|
+      format.html do
+        if @like.save
+          redirect_to @post, notice: "You like this post now."
+        else
+          flash[:danger] = "Failed to like this post"
+          redirect_to @post
+        end
+      end
+      format.js {@like.save}
     end
   end
 
   def unlike
     @post = Post.find(params[:id])
     current_user.likes.find_by_post_id(@post.id).delete
-    redirect_to @post
+    respond_to do |format|
+      format.html {redirect_to @post}
+      format.js {render "like"}
+    end
   end
 
   def liked

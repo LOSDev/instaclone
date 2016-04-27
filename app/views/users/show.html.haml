@@ -4,13 +4,13 @@
     %br
     %h2
       = @user.username
-      = render "shared/follow_button"
+      .follow-button= render "shared/follow_button"
     %p= @user.bio
     %br
     .row
       .col-md-4.col-xs-4.h5= pluralize(@user.posts.count, "post")
-      .col-md-4.col-xs-4.h5= link_to pluralize(@user.followers.count, "follower"), followers_user_path(@user)
-      .col-md-4.col-xs-4.h5= link_to "#{@user.following_relationships.count} following", following_user_path(@user)
+      .col-md-4.col-xs-4.h5= link_to pluralize(@user.followers.count, "follower"), followers_user_path(@user), class: "followers"
+      .col-md-4.col-xs-4.h5= link_to "#{@user.following_relationships.count} following", following_user_path(@user), class: "following"
 %br
 %br
 

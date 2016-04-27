@@ -1,8 +1,8 @@
 - if user_signed_in? && current_user.follows?(@user)
   %span
-    = link_to unfollow_user_path(@user), method: :delete, class: "btn btn-primary", id: "unfollow-button" do
+    = link_to unfollow_user_path(@user), method: :delete, remote: true, class: "btn btn-primary", id: "unfollow-button" do
       %span.glyphicon.glyphicon-user &nbsp;Unfollow
 - else
   %span
-    = link_to follow_user_path(@user), method: :post, class: "btn btn-primary", id: "follow-button" do
+    = link_to follow_user_path(@user), method: :post, remote: true, class: "btn btn-primary", id: "follow-button" do
       %span.glyphicon.glyphicon-user &nbsp;Follow

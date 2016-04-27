@@ -6,7 +6,7 @@ When(/^I like a post$/) do
 end
 
 Then(/^The post should have one like$/) do
-  expect(page).to have_content("1 Like")
+  expect(page).to have_content("1 like")
 end
 
 When(/^I unlike a post$/) do
@@ -14,7 +14,7 @@ When(/^I unlike a post$/) do
 end
 
 Then(/^the post should have (\d+) likes$/) do |arg1|
-  expect(page).to have_content("0 Likes")
+  expect(page).to have_content("0 likes")
 end
 
 When(/^I watch my liked posts$/) do

@@ -7,11 +7,11 @@
       .media-left= link_to(image_tag(@user.avatar.url(:thumb), class: "img-responsive"), @user)
       %span.media-body
         .h4= link_to @user.username, @user
-        = render "shared/follow_button"
+        .follow-button= render "shared/follow_button"
 
     %hr
     %p
-      = pluralize(@post.likes.count, "Like")
+      .likes= pluralize(@post.likes.count, "like")
       %span.pull-right= time_ago_in_words(@post.created_at)
 
     .comments
@@ -29,16 +29,9 @@
           = f.input :content, placeholder: "Add a comment...", label: false
           = f.button :submit, "Submit"
         %br
-        - if current_user.likes?(@post)
-          = button_to unlike_post_path(@post), method: :delete, class: "btn btn-primary" do
-            %span.glyphicon.glyphicon-heart-empty
-            Unlike
-        - elsif current_user == @user
-          %p
-            = link_to @post, method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure?"} do
-              %span.glyphicon.glyphicon-trash
-              Delete
-        - else
-          = button_to like_post_path(@post), class: "btn btn-primary" do
-            %span.glyphicon.glyphicon-heart
-            Like
+        .like-button= render "shared/like_button"
+      - if current_user == @user
+        %p
+          = link_to @post, method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure?"} do
+            %span.glyphicon.glyphicon-trash
+            Delete
