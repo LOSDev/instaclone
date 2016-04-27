@@ -1,8 +1,10 @@
-%button.btn.btn-primary.btn-lg
-  Your feed:
-%br
-%br
 
+%button.btn.btn-primary.btn-lg
+  Your liked posts
+  %span.badge.badge= @likes
+%br
+%br
+	
 .row
   .posts
     = render @posts
@@ -11,5 +13,5 @@
 - if @posts.next_page
   .row.text-center
     .pagination
-      = link_to "Load more", feed_users_path(page: @posts.next_page), remote: true, class: "btn btn-lg btn-primary"
+      = link_to "Load more", liked_posts_path(page: @posts.next_page), remote: true, class: "btn btn-lg btn-primary"
 .modal.fade{tabindex: "-1", role: "dialog"}

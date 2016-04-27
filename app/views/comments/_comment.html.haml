@@ -3,5 +3,5 @@
 	= comment.content
 	- if user_signed_in? && current_user == comment.user
 		.pull-right
-			= link_to post_comment_path(comment.post, comment), method: :delete, class: "delete-comment" do
+			= link_to post_comment_path(comment.post, comment), method: :delete, class: "delete-comment label label-danger" do
 				%span.glyphicon.glyphicon-trash

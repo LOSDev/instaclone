@@ -16,3 +16,17 @@ end
 Then(/^the post should have (\d+) likes$/) do |arg1|
   expect(page).to have_content("0 Likes")
 end
+
+When(/^I watch my liked posts$/) do
+  visit root_path
+  click_link @user.username
+  click_link "Liked Posts"
+end
+
+When(/^I like (\d+) posts$/) do |arg1|
+  user = FactoryGirl.create(:user)
+  arg1.to_i.times do
+    post = FactoryGirl.create(:post, user: user)
+    Like.create(post: post, user: @user)
+  end
+end

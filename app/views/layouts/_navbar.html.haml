@@ -14,23 +14,39 @@
         %li &nbsp;&nbsp;&nbsp;&nbsp;
         %li &nbsp;&nbsp;&nbsp;&nbsp;
         .navbar-form.navbar-left
-          .form-group= search_field_tag :search_term, nil, placeholder: "Search", class: "form-control", size: 30
-
+          .form-group.has-feedback
+            = search_field_tag :search_term, nil, placeholder: "Search", class: "form-control", size: 25
+            %span.glyphicon.glyphicon-search.form-control-feedback
 
       %ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
-          = link_to "New Post", new_post_path, class: "btn btn-primary navbar-btn navbar-left"
+          = link_to new_post_path, class: "btn btn-primary navbar-btn navbar-left" do
+            %span.glyphicon.glyphicon-picture
+            New Post
 
           %li.dropdown
             %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-              %span.glyphicon.glyphicon-list
+              %span.glyphicon.glyphicon-menu-hamburger
               = current_user.username
               %span.caret
             %ul.dropdown-menu
-              %li= link_to "My Profile", user_path(current_user)
-              %li= link_to "My Feed", feed_user_path(current_user)
+              %li
+                = link_to user_path(current_user) do
+                  %span.glyphicon.glyphicon-user
+                  My Profile
+              %li
+                = link_to feed_users_path do
+                  %span.glyphicon.glyphicon-list-alt
+                  My Feed
+              %li
+                = link_to liked_posts_path do
+                  %span.badge= current_user.likes.count
+                  Liked Posts
               %li.divider
-              %li= link_to "Account Settings", edit_user_registration_path
+              %li
+                = link_to edit_user_registration_path do
+                  %span.glyphicon.glyphicon-cog
+                  Account Settings
         - else
           %li= link_to "Register", new_user_registration_path
           %li= link_to "Log in", new_user_session_path

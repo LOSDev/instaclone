@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, except: [:show]
-  before_action :find_user
+  before_action :find_user, except: [:feed]
 
   def show
     @posts = @user.posts.order("created_at DESC").paginate(:page => params[:page], :per_page => 12)

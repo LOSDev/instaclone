@@ -1,17 +1,21 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :users, only: :show do
-
+    collection do
+      get 'feed'
+    end
     member do
       post 'follow'
       delete 'unfollow'
       get 'following'
       get "followers"
-      get 'feed'
     end
   end
   resources :posts do
     resources :comments, only: [:index, :create, :destroy]
+    collection do
+      get 'liked'
+    end
     member do
       post 'like'
       delete 'unlike'

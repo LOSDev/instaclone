@@ -45,6 +45,11 @@ class PostsController < ApplicationController
     redirect_to @post
   end
 
+  def liked
+    @likes = current_user.likes.count
+    @posts = current_user.liked_posts.order("created_at DESC").paginate(page: params[:page], per_page: 12)
+  end
+
   private
 
   def post_params

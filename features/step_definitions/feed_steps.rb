@@ -17,7 +17,7 @@ end
 
 When(/^I try to look at my feed$/) do
   @user = FactoryGirl.create(:user)
-  visit feed_user_path(@user)
+  visit feed_users_path
 end
 
 Then(/^I should see the sign in page$/) do
