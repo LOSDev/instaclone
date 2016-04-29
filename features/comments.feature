@@ -12,6 +12,12 @@ Feature: Comments
     Then I should see a flash error message
 
   @javascript
+  Scenario: Create invalid comment with ajax
+    Given I am a logged in user
+    When I create an invalid comment
+    Then I should see "Comment can't be blank"
+
+  @javascript
   Scenario: Delete a comment
     Given I am a logged in user
     When I create a comment

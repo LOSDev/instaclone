@@ -7,12 +7,13 @@
       .media-left= link_to(image_tag(@user.avatar.url(:thumb), class: "img-responsive"), @user)
       %span.media-body
         .h4= link_to @user.username, @user
-        .follow-button= render "shared/follow_button"
+        %span.follow-button= render "shared/follow_button", user: @user
 
     %hr
     %p
-      .likes= pluralize(@post.likes.count, "like")
-      %span.pull-right= time_ago_in_words(@post.created_at)
+      .stats
+        %span.likes= pluralize(@post.likes.count, "like")
+        %span.pull-right= time_ago_in_words(@post.created_at)
 
     .comments
       - unless @post.description.blank?
@@ -25,7 +26,7 @@
     %hr
     - if user_signed_in?
       %p
-        = simple_form_for [@post, Comment.new], html: { class: 'form-inline' } do |f|
+        = simple_form_for [@post, Comment.new], remote: true, html: { class: 'form-inline' } do |f|
           = f.input :content, placeholder: "Add a comment...", label: false
           = f.button :submit, "Submit"
         %br

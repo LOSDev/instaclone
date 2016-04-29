@@ -20,4 +20,15 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+
+  activerecord:
+    attributes:
+      comment:
+        content: "Comment"
+    errors:
+      models:
+        comment:
+          attributes:
+            content:
+              too_short: "can't be blank."
+              too_long: "must have less the %{count} characters."

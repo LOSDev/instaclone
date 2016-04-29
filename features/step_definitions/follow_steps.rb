@@ -14,7 +14,7 @@ Then(/^another user has (\d+) follower$/) do |arg1|
 end
 
 When(/^I unfollow him$/) do
-  click_link "Unfollow"
+  click_link "Following"
 end
 
 Then(/^another user has (\d+) followers$/) do |arg1|

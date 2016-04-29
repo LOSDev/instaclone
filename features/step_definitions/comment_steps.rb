@@ -27,7 +27,11 @@ When(/^I create an invalid comment$/) do
 end
 
 Then(/^I should see a flash error message$/) do
-  expect(page).to have_selector(".alert-danger", text: "too short")
+  expect(page).to have_selector(".alert-danger", text: "can't be blank")
+end
+
+Then(/^I should see "([^"]*)"$/) do |arg1|
+  expect(page).to have_content(arg1)
 end
 
 When(/^I see a comment from another user$/) do

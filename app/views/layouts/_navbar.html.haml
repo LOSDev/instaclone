@@ -40,7 +40,7 @@
                   My Feed
               %li
                 = link_to liked_posts_path do
-                  %span.badge= current_user.likes.count
+                  %span.badge.likes= current_user.likes.count
                   Liked Posts
               %li.divider
               %li

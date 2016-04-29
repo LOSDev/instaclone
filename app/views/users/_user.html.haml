@@ -1,7 +1,9 @@
 %li.list-group-item
   .media
-    = link_to user do
-      .media-left= image_tag(user.avatar.url(:thumb), class: "img-responsive")
-      .media-body
-        %h4= user.username
-        = user.bio
+    .media-left= link_to image_tag(user.avatar.url(:thumb), class: "img-responsive"), user
+    .media-body
+      = link_to user do
+        %h3.media-heading= user.username
+        .media-desc= user.bio
+    .media-right
+      = render "shared/follow_button", user: user

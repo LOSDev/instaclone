@@ -1,6 +1,10 @@
-%h3 Your followers:
-%ul.list-group.users
-  = render @users
+%h2
+  %span.label.label-primary= "followers of #{@user.username}:"
+%ul.users.list-group
+  - if @users.count > 0
+    = render @users
+  - else
+    %h3 Nobody yet.
 - if @users.next_page
   .row
     .col-md-4.col-md-offset-4.text-center

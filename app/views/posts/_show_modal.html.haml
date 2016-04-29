@@ -1,11 +1,12 @@
 .modal-dialog.modal-lg
   .modal-content
     .modal-body.clearfix
+      .modal-alert
       = render "show"
     .modal-footer
       .pull-left
-        = link_to "", remote: true, class: "btn btn-primary btn-lg previous-button" do
+        = link_to "", class: "btn btn-primary btn-lg previous-button" do
           %span.glyphicon.glyphicon-chevron-left
       .pull-right
-        = link_to "", remote: true, class: "btn btn-primary btn-lg next-button" do
+        = link_to "", class: "btn btn-primary btn-lg next-button" do
           %span.glyphicon.glyphicon-chevron-right

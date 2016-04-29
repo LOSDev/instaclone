@@ -31,16 +31,20 @@ class PostsController < ApplicationController
   def like
     @post = Post.find(params[:id])
     @like = current_user.likes.build(post: @post)
-    respond_to do |format|
-      format.html do
-        if @like.save
-          redirect_to @post, notice: "You like this post now."
-        else
-          flash[:danger] = "Failed to like this post"
+
+    if @like.save
+      respond_to do |format|
+        format.html { redirect_to @post, notice: "You like this post now." }
+        format.js
+      end
+    else
+      respond_to do |format|
+        format.html do
+          flash[:danger] = "Failed to like this post."
           redirect_to @post
         end
+        format.js
       end
-      format.js {@like.save}
     end
   end
 
@@ -54,7 +58,6 @@ class PostsController < ApplicationController
   end
 
   def liked
-    @likes = current_user.likes.count
     @posts = current_user.liked_posts.order("created_at DESC").paginate(page: params[:page], per_page: 12)
   end
 

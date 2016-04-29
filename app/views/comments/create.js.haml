@@ -1,0 +1,8 @@
+- if @comment.errors.any?
+  $("#new_comment .form-group").addClass("has-error")
+  $("#new_comment .form-group").parent().append("<div class='comment-error text-danger'>#{@comment.errors.full_messages.first}</div>")
+- else
+  $("#new_comment .form-group").removeClass("has-error")
+  $(".comment-error").remove()
+  $("#{j render @comment}").appendTo(".comments-content").hide().fadeIn(1400)
+  $("#comment_content").val('')
