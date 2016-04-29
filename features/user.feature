@@ -10,6 +10,10 @@ Feature: User Pages
     When I sign up for the website without a username
     Then I should see a flash message with an error
 
+  Scenario: Log out
+    Given I am a logged in user
+    When I click "Log out"
+    Then I should see "Signed out successfully."
 
   Scenario: Edit User
     Given I am a logged in user
@@ -20,5 +24,3 @@ Feature: User Pages
     Given I am a logged in user
     When I visit my Profile
     Then I should see my bio
-
-    

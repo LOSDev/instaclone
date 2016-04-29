@@ -17,3 +17,13 @@
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require_tree .
+
+
+
+$(document).ajaxError(function (e, xhr, settings) {
+  if (xhr.status == 401) {
+    $('.modal').modal('hide');
+    $("html, body").animate({ scrollTop: 0 }, "slow");
+    $('.flash').html("<div class='alert alert-warning text-center'>" + xhr.responseText + "</div>");
+  }
+});

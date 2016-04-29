@@ -34,7 +34,7 @@ Feature: Comments
   @javascript
   Scenario: Paginate Comments
     Given I am a logged in user
-    When I visit a post with 21 comments
-    Then I should see 20 comments
+    When I visit a post with 13 comments
+    Then I should see 12 comments
     When I click "load more comments"
-    Then I should see 21 comments
+    Then I should see 13 comments

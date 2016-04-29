@@ -47,6 +47,11 @@
                 = link_to edit_user_registration_path do
                   %span.glyphicon.glyphicon-cog
                   Account Settings
+              %li
+                = link_to destroy_user_session_path, method: :delete do
+                  %span.glyphicon.glyphicon-log-out
+                  Log out
+
         - else
           %li= link_to "Register", new_user_registration_path
           %li= link_to "Log in", new_user_session_path

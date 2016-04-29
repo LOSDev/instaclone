@@ -20,9 +20,11 @@
         %p
           = link_to @user.username, @user
           %span.post-description= @post.description
-      .comment-pagination.text-center= link_to "load more comments", post_comments_path(@post), remote: true, class: "load-more-comments"
+      - if @comments.next_page
+        .comment-pagination.text-center
+          = link_to "load more comments", post_comments_path(@post, page: @comments.next_page), remote: true, class: "load-more-comments"
       %br
-      .comments-content
+      .comments-content= render @comments
     %hr
     - if user_signed_in?
       %p

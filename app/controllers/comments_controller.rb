@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
 
   def index
     @post = Post.find(params[:post_id])
-    @comments = @post.comments.paginate(page: params[:page], per_page: 20)
+    @comments = @post.comments.paginate(page: params[:page])
   end
 
   def create

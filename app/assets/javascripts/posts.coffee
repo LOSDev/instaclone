@@ -22,20 +22,17 @@ previewImage = ->
       $(".upload-preview figure").removeClass().addClass("no_filter")
       $(".image-filters input[value=no_filter]").parent().addClass("active")
 
-loadComments = ->
-  if $(".comment-pagination").length
-    $(".load-more-comments").click()
-
+applyFilter = (el) ->
+  $val = el.children().val()
+  $(".image-filters label").removeClass("active")
+  el.addClass("active")
+  $(".upload-preview figure").removeClass().addClass($val)
 
 $ ->
   renderHashtags()
   previewImage()
   $(".image-filters label").click ->
-    $val = $(this).children().val()
-    $(".image-filters label").removeClass("active")
-    $(this).addClass("active")
-    $(".upload-preview figure").removeClass().addClass($val)
-  loadComments()
+    applyFilter($(this))
 
 
   $(document).ajaxSuccess ->
