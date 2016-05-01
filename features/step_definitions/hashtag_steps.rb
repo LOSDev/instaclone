@@ -6,7 +6,7 @@ When(/^I visit a post$/) do
 end
 
 When(/^I click on a hashtag$/) do
-  expect(page).to have_content("#two")
+  expect(page).to have_link("#two")
   click_link "#two"
 end
 

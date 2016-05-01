@@ -1,6 +1,6 @@
 class Like < ActiveRecord::Base
   belongs_to :user
-  belongs_to :post
+  belongs_to :post, counter_cache: true
 
   validates :post_id, presence: true, uniqueness: {scope: :user_id}
   validates :user_id, presence: true

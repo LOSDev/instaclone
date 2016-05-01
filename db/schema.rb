@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160423105138) do
+ActiveRecord::Schema.define(version: 20160501115305) do
 
   create_table "comments", force: :cascade do |t|
     t.string   "content"
@@ -67,6 +67,8 @@ ActiveRecord::Schema.define(version: 20160423105138) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.string   "image_filter",       default: "no_filter"
+    t.integer  "comments_count",     default: 0
+    t.integer  "likes_count",        default: 0
   end
 
   add_index "posts", ["user_id"], name: "index_posts_on_user_id"

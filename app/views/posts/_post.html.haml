@@ -4,10 +4,10 @@
       = image_tag(post.image.url(:thumb), class: "img-responsive", width: 350)
     .overlay
       %h5
-        = post.comments.count
+        = post.comments.size
         %span.glyphicon.glyphicon-comment
       %h5
-        = post.likes.count
+        = post.likes.size
         %span.glyphicon.glyphicon-heart
 
   %br
