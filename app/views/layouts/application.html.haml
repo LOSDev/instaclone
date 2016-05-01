@@ -12,3 +12,4 @@
       - flash.each do |name, msg|
         .text-center= content_tag(:div, msg, class: "alert alert-#{name == "notice" ? "info" : name}")
     .col-md-8.col-md-offset-2= yield
+    = render "layouts/login_modal" unless user_signed_in?

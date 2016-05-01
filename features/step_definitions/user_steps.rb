@@ -2,8 +2,8 @@ When(/^I sign up for the website$/) do
   @user = FactoryGirl.build(:user)
   visit root_path
   click_link "Sign up"
-  fill_in "Email", with: @user.email
-  fill_in "user_password", with: @user.password
+  fill_in "Email", with: @user.email, match: :first
+  fill_in "user_password", with: @user.password, match: :first
   fill_in "Password confirmation", with: @user.password
   fill_in "Username", with: @user.username
   fill_in "Bio", with: @user.bio
@@ -23,9 +23,9 @@ Given(/^I am a logged in user$/) do
 
   visit root_path
   click_link "Sign in"
-  fill_in "Email", with: @user.email
-  fill_in "Password", with: @user.password
-  click_button "Log in"
+  fill_in "Email", with: @user.email, match: :first
+  fill_in "Password", with: @user.password, match: :first
+  click_button "Log in", match: :first
 end
 
 When(/^I change my username$/) do
@@ -52,8 +52,8 @@ When(/^I sign up for the website without a username$/) do
   @user = FactoryGirl.build(:user)
   visit root_path
   click_link "Sign up"
-  fill_in "Email", with: @user.email
-  fill_in "user_password", with: @user.password
+  fill_in "Email", with: @user.email, match: :first
+  fill_in "user_password", with: @user.password, match: :first
   fill_in "Password confirmation", with: @user.password
   fill_in "Username", with: ""
   fill_in "Bio", with: @user.bio

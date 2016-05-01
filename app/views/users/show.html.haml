@@ -24,5 +24,4 @@
     .col-md-4.col-md-offset-4.text-center
       .pagination= link_to "Load more", user_path(@user, page: @posts.next_page), remote: true, class: "btn btn-lg btn-primary"
 %br
-
-#post-modal.modal.fade{tabindex: "-1", role: "dialog"}
+= render "shared/post_modal"

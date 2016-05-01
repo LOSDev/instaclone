@@ -9,4 +9,4 @@
   .row.text-center
     .pagination
       = link_to "Load more", feed_users_path(page: @posts.next_page), remote: true, class: "btn btn-lg btn-primary"
-.modal.fade{tabindex: "-1", role: "dialog"}
+= render "shared/post_modal"

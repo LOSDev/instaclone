@@ -36,6 +36,5 @@ $ ->
 
 
   $(document).ajaxSuccess ->
-    renderHashtags()
-    if $(".modal").length
-      loadComments()
+    if $(".post-description").length
+      renderHashtags()

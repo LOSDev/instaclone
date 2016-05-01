@@ -6,6 +6,7 @@ When(/^I visit a post$/) do
 end
 
 When(/^I click on a hashtag$/) do
+  expect(page).to have_content("#two")
   click_link "#two"
 end
 
@@ -16,10 +17,9 @@ end
 
 When(/^there are (\d+) posts with a hashtag$/) do |arg1|
   @user = FactoryGirl.create(:user)
-  hashtag = "#cat"
+  hashtag = "#two"
   arg1.to_i.times do
-    FactoryGirl.create(:post, user: @user, description: hashtag)
+    @post = FactoryGirl.create(:post, user: @user, description: hashtag)
   end
-  visit post_path(Post.last)
-  click_link hashtag
+  visit post_path(@post)
 end

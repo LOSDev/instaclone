@@ -11,6 +11,7 @@ Feature: Hashtag
   Scenario: Paginate Hashtag Posts
     Given I am a guest
     When there are 13 posts with a hashtag
+    And I click on a hashtag
     Then I should see 12 posts
     When I click "Load more"
     Then I should see 13 posts
