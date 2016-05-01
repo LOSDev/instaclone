@@ -1,2 +1,5 @@
-$(".follow-button").html("#{j render "shared/follow_button", user: @user}")
-$(".followers").html("#{j pluralize(@user.followers.count, "follower")}")
+:plain
+  $(".follow-button-user-#{@user.slug}").fadeOut("slow", function() {
+    $(".follow-button-user-#{@user.slug}").html("#{j render "shared/follow_button", user: @user}").fadeIn("slow")
+  })
+  $(".followers").html("#{j pluralize(@user.followers.count, "follower")}")

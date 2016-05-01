@@ -1,8 +1,9 @@
-- if user_signed_in? && current_user.follows?(user)
-  = link_to unfollow_user_path(user), method: :delete, remote: true, class: "btn btn-success", id: "unfollow-button" do
-    %span.glyphicon.glyphicon-ok
-    Following
-- else
-  = link_to follow_user_path(user), method: :post, remote: true, class: "btn btn-primary", id: "follow-button" do
-    %span.glyphicon.glyphicon-user
-    Follow
+%span{:class => "follow-button-user-#{user.slug}"}
+  - if user_signed_in? && current_user.follows?(user)
+    = link_to unfollow_user_path(user), method: :delete, remote: true, class: "btn btn-success", data: {confirm: "Are you sure?"} do
+      %span.glyphicon.glyphicon-ok
+      Following
+  - else
+    = link_to follow_user_path(user), method: :post, remote: true, class: "btn btn-primary" do
+      %span.glyphicon.glyphicon-user
+      Follow

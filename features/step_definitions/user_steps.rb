@@ -29,7 +29,7 @@ Given(/^I am a logged in user$/) do
 end
 
 When(/^I change my username$/) do
-  @new_user_name = Faker::Internet.user_name
+  @new_user_name = FactoryGirl.build(:user).username
   click_link "Account Settings"
   fill_in "Username", with: @new_user_name
   fill_in "Current password", with: @user.password

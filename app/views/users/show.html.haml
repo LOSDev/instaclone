@@ -4,7 +4,7 @@
     %br
     %h2
       = @user.username
-      %span.follow-button= render "shared/follow_button", user: @user
+      = render "shared/follow_button", user: @user
     %p
       %i.h5= @user.bio
     %br
