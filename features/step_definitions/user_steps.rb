@@ -22,7 +22,6 @@ Given(/^I am a logged in user$/) do
   @user = FactoryGirl.create(:user)
 
   visit root_path
-  click_link "Sign in"
   fill_in "Email", with: @user.email, match: :first
   fill_in "Password", with: @user.password, match: :first
   click_button "Log in", match: :first

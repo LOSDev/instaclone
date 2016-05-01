@@ -18,11 +18,16 @@
  @import "bootstrap";
  @import "cssgram.min.css";
  @import url(https://fonts.googleapis.com/css?family=Cookie);
+
  html, body { height: 100%; }
 .alert-alert { @extend .alert-warning; }
  body{
    background-color: #f9f9f9;
  }
+.welcome-message{
+  font-family: 'Cookie', cursive;
+  color: darkblue !important;
+}
 .navbar-brand{
   font-family: 'Cookie', cursive;
   font-size: 2.5em;
@@ -71,8 +76,9 @@
 
 .overlay {
   position: absolute;
-  bottom: 20px;
-  left: 20px;
+  bottom: 2em;
+  left: 1.5em;
+  width: auto;
   background: rgba(0, 0, 0, 0.75) !important;
   padding: 4px 8px;
   color: white;

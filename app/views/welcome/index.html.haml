@@ -1,13 +1,27 @@
-
-.jumbotron.text-center
-  %h1 Welcome to Instagram
-  %p
-    = link_to "Sign up", new_user_registration_path, class: "btn btn-primary btn-lg"
-    = link_to "Sign in", new_user_session_path, class: "btn btn-primary btn-lg login-button"
 .row
-  .filters
-    - Post::IMAGE_FILTERS.each do |filter|
-      .col-md-4.col-xs-4
-        %figure{:class => "#{filter}"}=image_tag("image_#{@random_image}.jpeg", class: "img-responsive")
-        .overlay.permanent= filter.titleize
-        %br
+  .col-md-6
+    .panel
+      .panel-header
+        %h1.welcome-message.text-center
+          Welcome to Instaclone
+      .panel-body
+        %p.text-center
+          = link_to "Sign up", new_user_registration_path, class: "btn btn-primary"
+        %hr
+        %h3.text-center Log in
+        .col-md-8.col-md-offset-2
+          = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+            .form-inputs
+              = f.input :email, required: true, autofocus: true
+              = f.input :password, required: true
+              = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
+            .form-actions
+              = f.button :submit, "Log in", class: "btn btn-primary btn-block"
+
+  .col-md-6
+    .filters
+      - Post::IMAGE_FILTERS.sample(2).each do |filter|
+        .col-md-12.hidden-xs
+          %figure{:class => "#{filter}"}=image_tag("image_#{@random_image}.jpeg", class: "img-responsive")
+          .overlay.permanent= filter.titleize
+          %br
