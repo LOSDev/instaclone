@@ -5,20 +5,18 @@
     %h2
       = @user.username
       %span.follow-button= render "shared/follow_button", user: @user
-    %p= @user.bio
+    %p
+      %i.h5= @user.bio
     %br
     .row
-      .col-md-4.col-xs-4.h5= pluralize(@user.posts.count, "post")
-      .col-md-4.col-xs-4.h5= link_to pluralize(@user.followers.count, "follower"), followers_user_path(@user), class: "followers"
-      .col-md-4.col-xs-4.h5= link_to "#{@user.following_relationships.count} following", following_user_path(@user), class: "following"
+      .col-md-4.col-xs-4.h4= pluralize(@user.posts.count, "post")
+      .col-md-4.col-xs-4.h4= link_to pluralize(@user.followers.count, "follower"), followers_user_path(@user), class: "followers"
+      .col-md-4.col-xs-4.h4= link_to "#{@user.following_relationships.count} following", following_user_path(@user), class: "following"
 %br
-%br
-
 .row
   .posts
     = render @posts
 %br
-
 - if @posts.next_page
   .row
     .col-md-4.col-md-offset-4.text-center

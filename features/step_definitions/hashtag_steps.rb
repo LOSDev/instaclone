@@ -10,6 +10,11 @@ When(/^I click on a hashtag$/) do
   click_link "#two"
 end
 
+When(/^I visit the hashtag path$/) do
+  visit hashtag_path("two")
+end
+
+
 Then(/^I should see all posts with the hashtag$/) do
   expect(page).to have_content("#two")
   expect(page).to have_selector(".posts img")

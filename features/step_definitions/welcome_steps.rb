@@ -7,7 +7,7 @@ end
 
 Then(/^I should see the logo$/) do
   expect(page).to have_selector(".navbar-brand")
-  expect(page).to have_link("Instagram", href: root_path)
+  expect(page).to have_link("Instaclone", href: root_path)
 
 end
 

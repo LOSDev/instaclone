@@ -34,15 +34,15 @@ Feature: Following users
   @javascript
   Scenario: Paginate followers page
     Given I am a logged in user
-    When 21 users follow me
-    Then I should see 20 followers
+    When 16 users follow me
+    Then I should see 15 followers
     When I click "Load more"
-    Then I should see 21 followers
+    Then I should see 16 followers
 
   @javascript
   Scenario: Paginate followed users page
     Given I am a logged in user
-    When I follow 21 users
-    Then I should see 20 followed users
+    When I follow 16 users
+    Then I should see 15 followed users
     When I click "Load more"
-    Then I should see 21 followed users
+    Then I should see 16 followed users
